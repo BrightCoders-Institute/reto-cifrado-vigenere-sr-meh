@@ -30,23 +30,28 @@ vigenere = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W,
 
 #inicializa una matriz con el abecedario
 
-
-
-def cifrado_vigenere
-	# crea una matriz con los elementos del abecedario
-	abecedario = ("A".."Z").to_a 
-	
+def solicita_datos
 	#Solicita mensaje y clave, las convvierte en mayusculas y elimina los espcios
 	puts "Ingresa el mensaje a cifrar: "
 	mensaje = gets.chomp.upcase.gsub(/[^A-Z]/, '')
-	
+
 	puts "Ingresa la clave de cifrado: "
 	clave_cifrado = gets.chomp.upcase.gsub(/[^A-Z]/, '')
-	
+
+	cifrado_vigenere(mensaje, clave_cifrado)
+end
+
+
+def cifrado_vigenere(mensaje, clave_cifrado)
 	p mensaje
 	p clave_cifrado
 
+	clave_cifrado = clave_cifrado * (mensaje.length / clave_cifrado.length) + clave_cifrado[0, mensaje.length % clave_cifrado.length]
+	p clave_cifrado
 
 end
 
-cifrado_vigenere
+
+
+
+solicita_datos
