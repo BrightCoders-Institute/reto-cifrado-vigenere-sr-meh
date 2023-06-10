@@ -1,57 +1,74 @@
-=begin
-cifrado
-vigenere = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z],
-					 [B, C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A],
-					 [C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B],
-					 [D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C],
-					 [E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D],
-					 [F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E],
-					 [G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F],
-					 [H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G],
-					 [I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H],
-					 [J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I],
-					 [K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J],
-					 [L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K],
-					 [M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L],
-					 [N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M],
-					 [O, P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N],
-					 [P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O],
-					 [Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P],
-					 [R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q],
-					 [S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R],
-					 [T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S],
-					 [U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T],
-					 [V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U],
-					 [W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V],
-					 [X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W],
-					 [Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X],
-					 [Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y]
-=end
+# frozen_string_literal: true
 
-#inicializa una matriz con el abecedario
+# Style/FrozenStringLiteralComment: Enabled: false
+# cifrado
+# vigenere = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z],
+#            [B, C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A],
+#            [C, D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B],
+#            [D, E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C],
+#            [E, F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D],
+#            [F, G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E],
+#            [G, H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F],
+#            [H, I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G],
+#            [I, J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H],
+#            [J, K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I],
+#            [K, L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J],
+#            [L, M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K],
+#            [M, N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L],
+#            [N, O ,P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M],
+#            [O, P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N],
+#            [P, Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O],
+#            [Q, R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P],
+#            [R, S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q],
+#            [S, T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R],
+#            [T, U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S],
+#            [U, V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T],
+#            [V, W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U],
+#            [W, X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V],
+#            [X, Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W],
+#            [Y, Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X],
+#            [Z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y]
 
 def solicita_datos
-	#Solicita mensaje y clave, las convvierte en mayusculas y elimina los espcios
-	puts "Ingresa el mensaje a cifrar: "
-	mensaje = gets.chomp.upcase.gsub(/[^A-Z]/, '')
+  puts 'Ingresa el mensaje a cifrar: '
+  mensaje = gets.chomp.upcase.gsub(/[^A-Z]/, '')
+  return '' if mensaje.empty?
 
-	puts "Ingresa la clave de cifrado: "
-	clave_cifrado = gets.chomp.upcase.gsub(/[^A-Z]/, '')
+  puts 'Ingresa la clave de cifrado: '
+  contrasena = gets.chomp.upcase.gsub(/[^A-Z]/, '')
+  return '' if contrasena.empty?
 
-	cifrado_vigenere(mensaje, clave_cifrado)
+  cifrado = cifrado_vigenere(mensaje, contrasena)
+  muestra_datos(cifrado)
 end
 
-
-def cifrado_vigenere(mensaje, clave_cifrado)
-	p mensaje
-	p clave_cifrado
-
-	clave_cifrado = clave_cifrado * (mensaje.length / clave_cifrado.length) + clave_cifrado[0, mensaje.length % clave_cifrado.length]
-	p clave_cifrado
-
+def muestra_datos(cifrado)
+  puts "Mensaje cifrado: #{cifrado}"
 end
 
+def cifrado_vigenere(mensaje, contrasena)
+  #genera la matriz 
+	abecedario = ('A'..'Z').to_a
+	#
+  contrasena = contrasena * (mensaje.length / contrasena.length) + contrasena[0, mensaje.length % contrasena.length]
+  # p contrasena
 
+  clave_cifrada = ''
+  mensaje.chars.each_with_index do |letra, index|
+    mensaje_pos = abecedario.index(letra)
+    # p "mensaje pos  #{mensaje_pos}"
 
+    contrasena_pos = abecedario.index(contrasena[index])
+    # p "contrasena pos: #{contrasena_pos}"
+
+    cifrado_pos = (mensaje_pos + contrasena_pos) % abecedario.length
+    # p "cifrado pos: #{cifrado_pos}"
+
+    clave_cifrada += abecedario[cifrado_pos]
+    # p "clave cifrada:  #{clave_cifrada}"
+  end
+
+  clave_cifrada
+end
 
 solicita_datos
